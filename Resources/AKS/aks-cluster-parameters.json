@@ -1,0 +1,86 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "subscriptionId": {
+        "value": "subscrption-id-guid-goes-here"
+      },
+      "resourceGroupName": {
+        "value": "RealtimePractice"
+      },
+      "virtualNetworkName": {
+        "value": "RealtimeNet"
+      },
+      "subnetName": {
+        "value": "RealtimeSubNet"
+      },
+      "clusterName": {
+        "value": "realtimepractice"
+      },
+      "maxPods": {
+        "value": 64
+      },
+      "systemPoolNodeCount": {
+        "value": 2
+      },
+      "systemPoolNodeType": {
+        "value": "Standard_D4s_v3"
+      },
+      "agentPoolNodeCount": {
+        "value": 3
+      },
+      "agentPoolNodeType": {
+        "value": "Standard_D8s_v3"
+      },
+      "location": {
+        "value": "westus"
+      },
+      "dnsPrefix": {
+        "value": "realtimepractice-dns"
+      },
+      "kubernetesVersion": {
+        "value": "1.18.8"
+      },
+      "networkPlugin": {
+        "value": "azure"
+      },
+      "enableRBAC": {
+        "value": true
+      },
+      "enablePrivateCluster": {
+        "value": false
+      },
+      "enableHttpApplicationRouting": {
+        "value": false
+      },
+      "enableAzurePolicy": {
+        "value": false
+      },
+      "serviceCidr": {
+        "value": "10.71.0.0/16"
+      },
+      "dnsServiceIP": {
+        "value": "10.71.0.3"
+      },
+      "dockerBridgeCidr": {
+        "value": "172.17.0.1/16"
+      },
+      "addressSpaces": {
+        "value": [
+          "10.250.0.0/16"
+        ]
+      },
+      "subnetAddressSpace": {
+        "value": "10.250.0.0/20"
+      },
+      "ddosProtectionPlanEnabled": {
+        "value": false
+      },
+      "workspaceName": {
+        "value": "RealtimeWorkspace"
+      },
+      "workspaceRegion": {
+        "value": "westus"
+      }
+    }
+  }

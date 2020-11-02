@@ -1,0 +1,13 @@
+
+Install Windows Subsystem for Linux
+
+https://docs.microsoft.com/en-us/windows/wsl/install-win10
+
+Install Ubuntu 20.04 LTS
+
+Install Terminal
+
+Install Azure CLI
+https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-apt
+
+

@@ -1,0 +1,29 @@
+# Create the Namespace
+kubectl create namespace realtime-analytics
+
+# Use these commands to check the pods
+
+kubectl -n realtime-analytics get pods
+kubectl -n realtime-analytics get svc
+
+# Install each component individually
+helm upgrade --install realtime-zookeeper ./ConfluentDocker --set zookeeper.enabled=true
+helm upgrade --install realtime-broker ./ConfluentDocker --set broker.enabled=true
+helm upgrade --install realtime-registry ./ConfluentDocker --set schemaregistry.enabled=true
+helm upgrade --install realtime-connect ./ConfluentDocker --set connect.enabled=true
+helm upgrade --install realtime-restproxy ./ConfluentDocker --set restproxy.enabled=true
+
+# Install KSQLDbServer and the CLI
+helm upgrade --install realtime-ksql ./ConfluentDocker --set ksqldbserver.enabled=true --set ksqldbcli.enabled=true
+
+# Uninstall each component individually
+helm uninstall realtime-ksql
+helm uninstall realtime-restproxy
+helm uninstall realtime-connect
+helm uninstall realtime-registry
+helm uninstall realtime-broker
+helm uninstall realtime-zookeeper
+
+# UnInstall all the components at the same time
+helm uninstall realtime-ksqldbcli && helm uninstall realtime-ksqldbserver && helm uninstall realtime-restproxy && helm uninstall realtime-connect && helm uninstall realtime-registry && helm uninstall realtime-broker && helm uninstall realtime-zookeeper
+
