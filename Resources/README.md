@@ -106,6 +106,6 @@ The Schema Registry, the Connect and the brokers need to be up and running befor
 
 ```shell
 
-helm upgrade --install realtime-ksql ./ConfluentDocker --set ksqldbserver.enabled=true --set ksqldbcli.enabled=true
+helm upgrade --install realtime-ksql ./Confluent --set ksqldbserver.enabled=true --set ksqldbcli.enabled=true
 
 ```
