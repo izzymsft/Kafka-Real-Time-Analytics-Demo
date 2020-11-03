@@ -46,10 +46,10 @@ Run the following command to install Zookeeper and check if the services and pod
 # Install Zookeeper into the "realtime" namespace
 helm upgrade --install realtime-zookeeper ./Confluent --set zookeeper.enabled=true
 
-# Check if Zookeeper is ready
+# Check if pods is ready
 kubectl -n realtime get pods
 
-# Check if the service is ready
+# Check if the services are ready
 kubectl -n realtime get svc
 
 ```
@@ -97,7 +97,6 @@ Checkout the Kafka REST API to get more details on how to use this REST endpoint
  helm upgrade --install realtime-restproxy ./Confluent --set restproxy.enabled=true
 
 ```
-
 
 ### Install KSQLDB Server and KSQL CLI
 
