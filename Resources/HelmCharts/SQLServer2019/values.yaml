@@ -1,0 +1,34 @@
+
+replicaCount: 1
+
+application:
+  labelValue: sqlserver
+
+infrastructure:
+  namespace: sqlserver
+  appName: sqlserver
+  username: sa
+  password: "OCPHack2019@"
+  dataVolume: "/var/lib/sqlserver"
+  dataPath: "/var/lib/sqlserver/data"
+
+image:
+  name: mcr.microsoft.com/mssql/server
+  pullPolicy: IfNotPresent
+  tag: "2019-CU8-ubuntu-16.04"
+
+service:
+  type: LoadBalancer
+  port: 1433
+  protocol: TCP
+
+resources:
+  limits:
+     cpu: 1000m
+     memory: 4096Mi
+  requests:
+     cpu: 750m
+     memory: 2048Mi
+  volume:
+    size: 5Gi
+    storageClass: managed-premium

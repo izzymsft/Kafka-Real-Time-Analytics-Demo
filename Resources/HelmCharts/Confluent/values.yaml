@@ -20,7 +20,7 @@
 
 # kubectl create ns river
 infrastructure:
-  namespace: "river"
+  namespace: "realtime"
   storageClass: "managed-premium"
 
 # helm upgrade --install river-zookeeper ./ConfluentDocker --set zookeeper.enabled=true

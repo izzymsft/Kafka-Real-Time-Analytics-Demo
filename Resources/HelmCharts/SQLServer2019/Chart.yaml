@@ -1,0 +1,11 @@
+apiVersion: v2
+
+name: SQL Server Database
+
+description: A Helm chart for deploying a single node SQLServer instance on containers
+
+type: application
+
+version: 2.0
+
+appVersion: 2019
