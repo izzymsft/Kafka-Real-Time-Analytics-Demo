@@ -19,20 +19,59 @@ In the Resources/HelmCharts folder, you will find the helm charts for setting up
 
 You can use the following command syntax to install Helm charts
 
+
+### Helm and Kubectl Syntax
+
 ```shell
+# This command will install the chart or update the installation if it already exists
+helm upgrade --install {release-name} {HelmChartLocation} [--set optionName=OptionValue]
 
-helm upgrade --install {release-name}
-
+# This command will uninstall all the resources associated with the Helm release installed earlier
 helm uninstall {release-name}
 
+# Check if pods is ready
+kubectl -n realtime get pods
+
+# Check if the services are ready
+kubectl -n realtime get svc
+
+# Use this to remotely log into the kafka "broker1" deployment container in the "realtime" namespace
+kubectl -n realtime exec deploy/broker1 -it -- bash
+
+# Use this command to view logs from the broker1 deployment container
+kubectl -n realtime logs deploy/broker1
 ```
 
 ### Setting up MySQL 5.7
 
+Run the following command to install MySQL
+
+```shell
+
+helm upgrade --install realtime-mysql ./MySQL57 --set infrastructure.password=OCPHack57
+
+```
+
 ### Setting up Postgres 11.6
 
+Run the following command to install PostgreSQL
+
+```shell
+
+# Install the Kubernetes Resources
+
+helm upgrade --install realtime-postgresql ./PostgreSQL116 --set infrastructure.password=OCPHack116
+
+```
 ### Setting up SQL Server 2019
 
+Run the following command to install SQL Server 2019
+
+```shell
+
+helm upgrade --install realtime-sqlserver ./SQLServer2019 --set infrastructure.password=OCPHack2019
+
+```
 ## Setting up Zookeeper, Kafka, Kafka Connect, Schema Registry and KSQL
 
 These resources has to be setup in the following order
@@ -45,12 +84,6 @@ Run the following command to install Zookeeper and check if the services and pod
 
 # Install Zookeeper into the "realtime" namespace
 helm upgrade --install realtime-zookeeper ./Confluent --set zookeeper.enabled=true
-
-# Check if pods is ready
-kubectl -n realtime get pods
-
-# Check if the services are ready
-kubectl -n realtime get svc
 
 ```
 
