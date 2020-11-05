@@ -1,14 +1,24 @@
 # Extends the base kafka connect image from Confluent
 FROM confluentinc/cp-kafka-connect-base:6.0.0
 
-# Add Blob Store, ADLS, Synapse Connectors
+# Add Blob Store, ADLS, Synapse Connectors, Azure Functions, Cognitive 
 RUN confluent-hub install --no-prompt confluentinc/kafka-connect-azure-event-hubs:1.0.3
 
 RUN confluent-hub install --no-prompt confluentinc/kafka-connect-azure-blob-storage:1.5.0
 
 RUN confluent-hub install --no-prompt confluentinc/kafka-connect-azure-sql-dw:1.0.4
 
+RUN confluent-hub install --no-prompt confluentinc/kafka-connect-azure-data-lake-gen1-storage:1.5.0
+
 RUN confluent-hub install --no-prompt confluentinc/kafka-connect-azure-data-lake-gen2-storage:1.5.0
+
+# https://www.confluent.io/hub/confluentinc/kafka-connect-azure-functions
+RUN confluent-hub install --no-prompt confluentinc/kafka-connect-azure-functions:1.0.8
+
+# Azure Search
+# https://www.confluent.io/hub/confluentinc/kafka-connect-azure-search
+RUN confluent-hub install --no-prompt confluentinc/kafka-connect-azure-search:1.0.3
+
 
 # Installs the Debezium MongoDB Source Connector
 # https://docs.confluent.io/current/connect/debezium-connect-mongodb/index.html#mongodb-source-connector
@@ -21,6 +31,11 @@ RUN confluent-hub install --no-prompt debezium/debezium-connector-mysql:1.2.2
 # Installs the Debezium SQL Server Source Connector
 # https://docs.confluent.io/current/connect/debezium-connect-sqlserver/index.html#sqlserver-source-connector
 RUN confluent-hub install --no-prompt debezium/debezium-connector-sqlserver:1.2.2
+
+# Installs the Debezium PostgreSQL Connector
+# https://www.confluent.io/hub/debezium/debezium-connector-postgresql
+RUN confluent-hub install --no-prompt debezium/debezium-connector-postgresql:1.2.2
+
 
 # Installs the ElasticSearch Sink Connector
 # https://docs.confluent.io/current/connect/kafka-connect-elasticsearch/index.html#elasticsearch-overview

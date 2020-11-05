@@ -32,7 +32,7 @@ spec:
         app: connect
     spec:
       containers:
-      - image: "izzyacademy/cp-kafka-connect-base:3.0"
+      - image: "izzymsft/cp-kafka-connect-base:6.0"
         name: connect
         resources:
           requests:
