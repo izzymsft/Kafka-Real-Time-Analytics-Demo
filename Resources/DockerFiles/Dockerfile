@@ -58,11 +58,11 @@ ENV MYSQL_DRIVER_VERSION 5.1.39
 
 # Downloads the JDBC driver to the docker image and decompresses the tarball into a JAR file
 # This driver is needed by the JDBC kafka connector to connect to the specifc JDBC implementation (MySQL)
-RUN curl -k -SL "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_DRIVER_VERSION}.tar.gz" \
-     | tar -xzf - -C /usr/share/java/kafka/ --strip-components=1 mysql-connector-java-${MYSQL_DRIVER_VERSION}/mysql-connector-java-${MYSQL_DRIVER_VERSION}-bin.jar
+#RUN curl -k -SL "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_DRIVER_VERSION}.tar.gz" \
+#     | tar -xzf - -C /usr/share/java/kafka/ --strip-components=1 mysql-connector-java-${MYSQL_DRIVER_VERSION}/mysql-connector-java-${MYSQL_DRIVER_VERSION}-bin.jar
 
 # Command to build and push the new Docker image to the remote repository
-# docker build . -t izzymsft/cp-kafka-connect-base:5.0
-# docker push izzymsft/cp-kafka-connect-base:5.0
+# docker build . -t izzymsft/cp-kafka-connect-base:6.0
+# docker push izzymsft/cp-kafka-connect-base:6.0
 
-# docker run --name connector -it izzymsft/cp-kafka-connect-base:5.0
+# docker run --name connector -it izzymsft/cp-kafka-connect-base:6.0

@@ -1,0 +1,23 @@
+{
+    "name": "ecommerce-product-streams77",
+    "config": {
+      "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+      "database.hostname": "52.241.137.96",
+      "database.port": "3306",
+      "database.user": "debezium",
+      "database.password": "db3k4Cc",
+      "database.server.id": "77",
+      "database.server.name": "estreams77",
+      "table.whitelist" : "ecommerce.products,ecommerce.product_details",
+      "database.history.kafka.bootstrap.servers": "broker1-internal:9092",
+      "database.history.kafka.topic": "dbhistory.estreams77",
+      "include.schema.changes": "false",
+      "transforms": "unwrap,extractkey",
+      "transforms.unwrap.type" : "io.debezium.transforms.ExtractNewRecordState",
+      "transforms.extractkey.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+      "transforms.extractkey.field": "product_id",
+      "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+      "value.converter": "io.confluent.connect.avro.AvroConverter",
+      "value.converter.schema.registry.url": "http://schemaregistry-internal:8081"
+    }
+  }

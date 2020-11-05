@@ -23,6 +23,13 @@ You can use the following command syntax to install Helm charts
 ### Helm and Kubectl Syntax
 
 ```shell
+
+# Create the realtime namespace
+kubectl create ns realtime
+
+```
+
+```shell
 # This command will install the chart or update the installation if it already exists
 helm upgrade --install {release-name} {HelmChartLocation} [--set optionName=OptionValue]
 
