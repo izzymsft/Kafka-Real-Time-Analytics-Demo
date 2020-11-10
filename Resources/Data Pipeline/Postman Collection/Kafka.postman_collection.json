@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "36545f56-0e36-4778-b859-adf88bcd783b",
+		"name": "Kafka",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Connector Fruit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"name\": \"sql-server-fruit-connection\",\r\n \"config\": {\r\n \"connector.class\": \"io.debezium.connector.sqlserver.SqlServerConnector\",\r\n \"database.hostname\": \"{{DBIP}}\",\r\n \"database.port\": \"1433\",\r\n \"database.user\": \"{{user}}\",\r\n \"database.password\": \"{{password}}\",\r\n \"database.dbname\": \"testDB\",\r\n \"database.server.name\": \"{{server}}\",\r\n \"table.whitelist\": \"dbo.fruit\",\r\n \"database.history.kafka.bootstrap.servers\": \"broker1-internal:9092\",\r\n \"database.history.kafka.topic\": \"dbhistory.fruit\",\r\n \"include.schema.changes\": \"false\",\r\n \"transforms\": \"unwrap,extractkey\",\r\n \"transforms.unwrap.type\" : \"io.debezium.transforms.ExtractNewRecordState\",\r\n \"transforms.extractkey.type\": \"org.apache.kafka.connect.transforms.ExtractField$Key\",\r\n \"transforms.extractkey.field\": \"id\",\r\n \"key.converter\": \"org.apache.kafka.connect.converters.IntegerConverter\",\r\n \"value.converter\": \"io.confluent.connect.avro.AvroConverter\",\r\n \"value.converter.schema.registry.url\": \"http://schemaregistry-internal:8081\"\r\n }\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://{{ConnectIP}}:8083/connectors",
+					"protocol": "http",
+					"host": [
+						"{{ConnectIP}}"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Connector",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://{{ConnectIP}}:8083/connectors",
+					"protocol": "http",
+					"host": [
+						"{{ConnectIP}}"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Connector Status",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://{{ConnectIP}}:8083/connectors/sql-server-fruit-connection/status",
+					"protocol": "http",
+					"host": [
+						"{{ConnectIP}}"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"sql-server-fruit-connection",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Topics",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.kafka.v2+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{RestProxyIP}}:8082/topics",
+					"protocol": "http",
+					"host": [
+						"{{RestProxyIP}}"
+					],
+					"port": "8082",
+					"path": [
+						"topics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Connector Fruit",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://{{ConnectIP}}:8083/connectors/sql-server-fruit-connection",
+					"protocol": "http",
+					"host": [
+						"{{ConnectIP}}"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"sql-server-fruit-connection"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8a529167-e1ee-44fd-b124-acb160c39f9c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "48b3a76a-c1fa-431c-881e-59886e5f0370",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "047464e1-ae31-4007-9ab7-e00744bc26e2",
+			"key": "ConnectIP",
+			"value": "xx.xx.xx.x"
+		},
+		{
+			"id": "53fc2744-f4fd-4228-97c1-86ea692c6d6a",
+			"key": "DBIP",
+			"value": "xx.xx.xx.xx"
+		},
+		{
+			"id": "15f0679d-f558-4b42-bb7f-adfdc8b843db",
+			"key": "user",
+			"value": "user"
+		},
+		{
+			"id": "fd94e1bf-59dc-4738-a706-bb71dcc9a4e8",
+			"key": "password",
+			"value": "P@ssword1!"
+		},
+		{
+			"id": "7c68732b-1aba-429e-ae9b-25c45ea4a5ac",
+			"key": "server",
+			"value": "hostname"
+		},
+		{
+			"id": "2cb1d91b-392c-4509-ab97-afb483680af1",
+			"key": "RestProxyIP",
+			"value": "xx.xx.xx.xx"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
