@@ -1,5 +1,5 @@
 # Data Pipeline Workflow
-This workflow is to create a simple data pipeline from Azure SQL Virtual Machine to KSQLDB.  Here are the steps required to build out this workflow
+This workflow is to create a simple data pipeline from Azure SQL Server Virtual Machine to Confluent KSQLDB.  Here are the steps required to build out this workflow.  This simple workflow is to help you learn how to setup the Confluent platform in Azure and consume data thru a real-time data pipeline.
 
 ## Setup Source Environment for Database
 1. Create a SQL Server Virtual Machine (>=SQL 2017)
@@ -38,7 +38,7 @@ This workflow is to create a simple data pipeline from Azure SQL Virtual Machine
     c. {password}
     
     d. {server}
-1. Run POST command for Create Connector Fruit to establish connection
+1. Run POST command for Create Connector Fruit to establish connection. This connector file is for debezium to connect into the SQL VM and transform the data to read it in as an AVRO file.
 1. Run GET command for List Connector to confirm connector is setup
 1. Run GET Connector Status to confirm "state" is "RUNNING"
 1. Run GET List Topics to confirm the topic "{server}.dbo.fruit" is list in the topic
@@ -52,7 +52,7 @@ This workflow is to create a simple data pipeline from Azure SQL Virtual Machine
 
     ksql http://ksqldbserver-internal:8088
 
-1. Final step will be to create two tables in KQL to view data
+1. Final step will be to create two tables in KSQL to view data
     
     a. Open KSQL Folder and open file ksqltables
    
@@ -61,7 +61,10 @@ This workflow is to create a simple data pipeline from Azure SQL Virtual Machine
 1. The SELECT STATEMENT will allow you to see the data in the fruit table on SQL Server.
     
     a. Run both of these scripts side by side to make sure they match
-    
+
 1. Enable SQL Agent job so the stored proc will be executed every 10 mins and you should see the updates in the table
     
     a. The Agg table will show you a cumultive total for each time min timeframe it ran in with it aggregating on NUM_SOLD
+
+# Summary
+This data pipeline highlight how to setup debezium connector to extract data from SQL Server using CDC and consume it as an AVRO file.  The consumption happens thru KSQLDB but requires the Connector configuration to enable it.  The connector setups the connection string and transforms the data into a Key-Value pair.  This AVRO file then can be consumed as a topic in KSQLDB.
