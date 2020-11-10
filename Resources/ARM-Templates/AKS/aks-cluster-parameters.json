@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "subscriptionId": {
-        "value": "1be2307a-3f38-4358-9243-da34bdd7eb2d"
+        "value": "{Subscription ID Here}"
       },
       "resourceGroupName": {
         "value": "RealtimePractice"

@@ -41,7 +41,7 @@ This workflow is to create a simple data pipeline from Azure SQL Server Virtual 
 1. Run POST command for Create Connector Fruit to establish connection. This connector file is for debezium to connect into the SQL VM and transform the data to read it in as an AVRO file.
 1. Run GET command for List Connector to confirm connector is setup
 1. Run GET Connector Status to confirm "state" is "RUNNING"
-1. Run GET List Topics to confirm the topic "{server}.dbo.fruit" is list in the topic
+1. Run GET List Topics to confirm the topic "{hostname}.dbo.fruit" is list in the topic
 
 ## Setup KSQLDB environment to CREATE Tables and SELECT data
 1. Go into KSQL and run this command to login to node 
