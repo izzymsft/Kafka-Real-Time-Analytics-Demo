@@ -19,8 +19,16 @@ This workflow is to create a simple data pipeline from Azure SQL Virtual Machine
 
 
 ## Setup Postman Collection to create Debezium Connection
-1. At Ubuntu command line type in kubectl -n realtime get svc to determine IPs for restproxy and connect services
-1. Go into Postman collection and update IP addresses for {RestProxyIP} and {ConnectIP}
+1. At Ubuntu command line type in 
+    
+    kubectl -n realtime get svc to determine IPs for restproxy and connect services
+
+1. Go into Postman collection and update IP addresses for 
+    
+    a. {RestProxyIP}
+    
+    b. {ConnectIP}
+
 1. Go into Create Connection Fruit and update these fields in the body
     
     a. {hostname}
@@ -36,16 +44,24 @@ This workflow is to create a simple data pipeline from Azure SQL Virtual Machine
 1. Run GET List Topics to confirm the topic "{server}.dbo.fruit" is list in the topic
 
 ## Setup KSQLDB environment to CREATE Tables and SELECT data
-1. Go into KSQL and run this command to login to node kubectl -n realtime exec deploy/ksqldbcli -it -- bash
-1. Run KSQL CLI command to open CLI ksql http://ksqldbserver-internal:8088
+1. Go into KSQL and run this command to login to node 
+
+    kubectl -n realtime exec deploy/ksqldbcli -it -- bash
+
+1. Run KSQL CLI command to open CLI 
+
+    ksql http://ksqldbserver-internal:8088
+
 1. Final step will be to create two tables in KQL to view data
     
     a. Open KSQL Folder and open file ksqltables
    
     b. Copy these SQL statements into the CLI to create these tables
+
 1. The SELECT STATEMENT will allow you to see the data in the fruit table on SQL Server.
     
     a. Run both of these scripts side by side to make sure they match
+    
 1. Enable SQL Agent job so the stored proc will be executed every 10 mins and you should see the updates in the table
     
     a. The Agg table will show you a cumultive total for each time min timeframe it ran in with it aggregating on NUM_SOLD
