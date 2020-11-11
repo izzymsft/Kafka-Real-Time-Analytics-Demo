@@ -1,0 +1,26 @@
+#Create Table to view kafka topic
+CREATE TABLE fruit (
+    id INT PRIMARY KEY,
+    fruit_name VARCHAR,
+    num_sold INT
+  ) WITH (
+    kafka_topic = 'sqlmach.dbo.fruit',
+    value_format = 'avro'
+  );
+
+
+#Create Summary table to view data with aggregate functions
+CREATE TABLE fruit_agg as
+	SELECT fruit_name,
+	sum(num_sold)
+	FROM FRUIT
+	GROUP BY fruit_name
+EMIT CHANGES;
+
+
+# SELECT QUERIES to view data in FRUIT table
+# This will allows you to view the inserts in the database in realtime
+select * from fruit emit changes;
+
+#SELECT QUERY to view data in AGG Table
+select * from fruit_agg emit changes;
