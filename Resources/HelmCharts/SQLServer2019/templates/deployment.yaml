@@ -33,6 +33,8 @@ spec:
               key: sa_password
         - name: ACCEPT_EULA
           value: "Y"
+        - name: MSSQL_AGENT_ENABLED
+          value: "True"
         - name: MSSQL_PID
           value: "Developer" # check here for details - https://hub.docker.com/_/microsoft-mssql-server
         ports:
