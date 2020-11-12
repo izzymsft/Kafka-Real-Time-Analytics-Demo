@@ -57,3 +57,5 @@ CREATE TABLE customer_connections
     customer_id INTEGER NOT NULL, -- customer id of the person that is followed
     follower_id INTEGER NOT NULL, -- customer id of the person the is following
 );
+
+
