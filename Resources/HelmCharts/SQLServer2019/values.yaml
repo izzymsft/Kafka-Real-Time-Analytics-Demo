@@ -8,14 +8,14 @@ infrastructure:
   namespace: sqlserver
   appName: sqlserver
   username: sa
-  password: "OCPHack2019@"
+  password: "OCPHack2019"
   dataVolume: "/var/lib/sqlserver"
   dataPath: "/var/lib/sqlserver/data"
 
 image:
-  name: mcr.microsoft.com/mssql/server
+  name: izzymsft/sqlserver2019
   pullPolicy: IfNotPresent
-  tag: "2019-CU8-ubuntu-16.04"
+  tag: "1"
 
 service:
   type: LoadBalancer

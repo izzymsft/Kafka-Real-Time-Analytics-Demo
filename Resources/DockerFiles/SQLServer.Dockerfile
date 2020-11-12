@@ -10,6 +10,7 @@ RUN /opt/mssql/bin/mssql-conf set sqlagent.enabled true
 # We are switching back to the normal user
 USER mssql
 
+# docker login -u izzymsft
 # docker build . -f SQLServer.Dockerfile -t izzymsft/sqlserver2019:1
 # docker push izzymsft/sqlserver2019:1
 
